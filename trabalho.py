@@ -172,7 +172,7 @@ if col4.button('Vizualizar Registros'):
     st.subheader('Visualizar Registros')
     col1b, col2b, col3b = st.columns(3)
     ler_f = pd.read_csv(vazio)
-    ler_f['Data'] = pd.to_datetime(ler_f['Data'])
+    ler_f['Data'] = pd.to_datetime(ler_f['Data'], errors = 'coerce')
     inicio, fim = st.date_input('Selecione um intervalo de tempo:',
                                 [ler_f['Data'].min(), ler_f['Data'].max()])
     filtro = (ler_f['Data'].notna()) & (ler_f['Data'] >= pd.to_datetime(inicio)) & (ler_f['Data'] <= pd.to_datetime(fim))
